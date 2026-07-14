@@ -1,0 +1,19 @@
+{
+  "name": "muaazbinsarfaraz-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "wrangler pages dev . --compatibility-date=2026-07-14",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "mammoth": "1.10.0",
+    "pdfjs-dist": "5.4.624",
+    "pptxgenjs": "4.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.9",
+    "wrangler": "4.38.0"
+  }
+}

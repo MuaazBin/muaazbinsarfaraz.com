@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "muaazbinsarfaraz-com",
+  "compatibility_date": "2026-07-14",
+  "pages_build_output_dir": ".",
+  "vars": {
+    "CLAUDE_MODEL": "claude-opus-4-8",
+    "CLAUDE_SCREENING_MODEL": "claude-haiku-4-5",
+    "TURNSTILE_REQUIRED": "true",
+    "MAX_DOCUMENT_CHARS": "350000",
+    "PAGES_HOST_SUFFIX": "muaazbinsarfaraz-com.pages.dev",
+    "ALLOWED_ORIGINS": "https://muaazbinsarfaraz.com,https://www.muaazbinsarfaraz.com,https://muaazbinsarfaraz-com.pages.dev"
+  },
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "72140817",
+      "simple": { "limit": 10, "period": 60 }
+    }
+  ]
+}
