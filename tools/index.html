@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn a Word document or text PDF into an editable HTML, PowerPoint, or Google Slides presentation." />
+    <meta name="theme-color" content="#f7f7f4" />
+    <title>Document to Deck — Muaaz Bin Sarfaraz</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="tool.css" />
+    <script type="module" src="../assets/tools/app.bundle.js?v=20260714-1"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to tool</a>
+    <header class="tool-header">
+      <a class="brand" href="../" aria-label="Back to Muaaz Bin Sarfaraz portfolio">
+        <span class="brand-mark">M</span><span>Muaaz Bin Sarfaraz</span>
+      </a>
+      <nav aria-label="Tool navigation"><a href="./" aria-current="page">Document to Deck</a><a href="../">Portfolio</a></nav>
+    </header>
+
+    <main id="main">
+      <section class="intro" data-input-view>
+        <p class="eyebrow">AI tool · Private by design</p>
+        <h1>Turn a document into a presentation.</h1>
+        <p class="lede">Drop in a Word document or text PDF. Get a clean, editable deck without wrestling with layouts.</p>
+
+        <form class="composer" data-form novalidate>
+          <div class="drop-zone" data-drop-zone>
+            <input id="document-file" type="file" accept=".docx,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" data-file-input />
+            <div class="drop-icon" aria-hidden="true">↑</div>
+            <p><strong>Drop a document here</strong><span>or choose a DOCX or text PDF</span></p>
+            <button class="text-button" type="button" data-choose-file>Choose file</button>
+          </div>
+
+          <div class="file-chip" data-file-chip hidden>
+            <span class="file-type" data-file-type>DOCX</span>
+            <span><strong data-file-name></strong><small data-file-meta></small></span>
+            <button type="button" aria-label="Remove selected file" data-remove-file>×</button>
+          </div>
+
+          <div class="or"><span>or</span></div>
+          <label class="paste-field">
+            <span>Paste text</span>
+            <textarea rows="5" maxlength="350000" placeholder="Paste report, article, notes, or other source text…" data-pasted-text></textarea>
+          </label>
+
+          <details class="customize">
+            <summary>Customize <span>Optional</span></summary>
+            <div class="settings-grid">
+              <label>Audience<input name="audience" maxlength="100" placeholder="e.g. Executive leadership" /></label>
+              <label>Tone<select name="tone"><option value="professional">Professional</option><option value="persuasive">Persuasive</option><option value="educational">Educational</option></select></label>
+              <label>Length<select name="length"><option value="standard">Standard · 8–12 slides</option><option value="concise">Concise · 5–7 slides</option><option value="detailed">Detailed · 12–16 slides</option></select></label>
+              <label>Theme<select name="theme"><option value="light">Minimal light</option><option value="dark">Minimal dark</option><option value="editorial">Editorial</option></select></label>
+            </div>
+          </details>
+
+          <div class="privacy-note">
+            <span aria-hidden="true">⌁</span>
+            <p><strong>Your original file stays in this browser.</strong> Extracted text is sent securely to Cloudflare and Anthropic for generation, is not stored by this site, and is treated only as source material—not as instructions.</p>
+          </div>
+
+          <div class="turnstile-slot" data-turnstile></div>
+          <p class="form-error" role="alert" data-form-error hidden></p>
+          <button class="primary-action" type="submit" data-submit>Create deck <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <section class="processing" data-processing-view hidden aria-live="polite">
+        <div class="processing-mark"><span></span><span></span><span></span></div>
+        <p class="eyebrow">Building your presentation</p>
+        <h1 data-progress-title>Reading document</h1>
+        <p data-progress-detail>Your file is being converted to plain text locally.</p>
+        <ol class="progress-list" data-progress-list>
+          <li class="active">Read document</li><li>Check content</li><li>Structure story</li><li>Design slides</li>
+        </ol>
+      </section>
+
+      <section class="result" data-result-view hidden>
+        <div class="result-heading">
+          <div><p class="eyebrow">Your presentation</p><h1 data-deck-title></h1><p data-deck-meta></p></div>
+          <button class="secondary-action" type="button" data-start-over>Start over</button>
+        </div>
+        <div class="workspace">
+          <aside class="slide-list" data-slide-list aria-label="Presentation slides"></aside>
+          <div class="editor-panel">
+            <div class="slide-canvas" data-slide-canvas></div>
+            <div class="edit-fields">
+              <label>Slide title<input data-edit-title maxlength="180" /></label>
+              <label>Body<textarea data-edit-body rows="5" placeholder="One point per line"></textarea></label>
+              <label>Speaker notes<textarea data-edit-notes rows="3"></textarea></label>
+            </div>
+          </div>
+        </div>
+        <div class="export-bar">
+          <div><strong>Ready to present</strong><span>Every format uses the same edited content.</span></div>
+          <button type="button" data-export-html>HTML deck</button>
+          <button type="button" data-export-pptx>PowerPoint</button>
+          <button class="google-action" type="button" data-export-google>Open in Google Slides</button>
+        </div>
+        <p class="result-message" role="status" data-result-message></p>
+      </section>
+    </main>
+    <footer><span>Document to Deck</span><span>Files are processed locally · Text is not retained · <a href="../privacy/">Privacy</a></span></footer>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+SIREN HEAD: TORONTO NIGHT — CREDITS
+
+An unofficial, free, non-commercial family learning project.
+
+Siren Head was created by artist Trevor Henderson.
+Creator website: https://trevorhenderson.format.com/about
+
+Game concept, project direction, and play-testing:
+Muaaz Bin Sarfaraz and his child
+
+Prototype:
+AI-assisted JavaScript and Three.js development
+
+This project is not affiliated with, sponsored by, or endorsed by Trevor Henderson.
+No ownership of the Siren Head character is claimed.
