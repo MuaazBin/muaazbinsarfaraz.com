@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Siren Head: Toronto Night is a parent-and-child 3D browser game built from paper sketches, AI-assisted concept art, and JavaScript." />
+    <meta name="theme-color" content="#090b0d" />
+    <meta property="og:title" content="Siren Head: Toronto Night — A family-built browser game" />
+    <meta property="og:description" content="From a kid's paper game design to a playable storm-lit Toronto adventure." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../../assets/projects/siren-head/avenue-tower.jpg" />
+    <title>Siren Head: Toronto Night — Muaaz Bin Sarfaraz</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <script src="../../script.js" defer></script>
+    <script src="project.js" defer></script>
+  </head>
+  <body class="project-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="../../" aria-label="Muaaz Bin Sarfaraz, home">
+        <span class="brand-mark">M</span>
+        <span class="brand-name">Muaaz Bin Sarfaraz</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span class="sr-only">Open navigation</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Project navigation">
+        <a href="#story">Story</a>
+        <a href="#play">Play</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#controls">Controls</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../#side-projects" class="nav-cta">All projects <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="project-hero section-shell">
+        <div class="project-hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot"></span> Family side project · 3D browser game</p>
+          <h1>A monster game, built from a kid’s <em>imagination.</em></h1>
+          <p class="project-hero-intro">My kid wanted a game starring his favourite monster—but not a generic one. So we sat down with paper, invented characters, powers, controls, and a Toronto setting, then turned those ideas into concept art and a real playable prototype with AI and code.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#play">Play in your browser <span aria-hidden="true">↓</span></a>
+            <a class="button button-ghost" href="../../downloads/siren-head-toronto-night.zip" download>Download game</a>
+          </div>
+        </div>
+
+        <figure class="project-hero-visual reveal">
+          <img src="../../assets/projects/siren-head/avenue-tower.jpg" alt="The Siren Head player character on a rainy Toronto avenue with the CN Tower ahead" />
+          <figcaption><span>Toronto, reimagined</span><span>WebGL · Three.js</span></figcaption>
+        </figure>
+
+        <dl class="project-facts reveal">
+          <div><dt>Play time</dt><dd>5–10 minutes</dd></div>
+          <div><dt>Made with</dt><dd>Paper, AI + JavaScript</dd></div>
+          <div><dt>Built by</dt><dd>Parent + child</dd></div>
+          <div><dt>Best on</dt><dd>Desktop browser</dd></div>
+        </dl>
+      </section>
+
+      <section id="story" class="project-story section-shell">
+        <div class="project-story-lead reveal">
+          <p class="eyebrow">Why we made it</p>
+          <h2>The brief came from the best kind of client.</h2>
+        </div>
+        <div class="project-story-copy reveal">
+          <p class="story-big">He already knew the feeling he wanted: enormous monsters, a dark city, a siren blast, soldiers, and a final showdown beneath the CN Tower.</p>
+          <p>We didn’t begin at a keyboard. We sketched the world on paper and talked through what each character could do. Siren Head would sweep enemies aside, bite at close range, and unleash a sonic blast. House Head would move like a giant spider. The city needed rain, lightning, and landmarks that made the monsters feel impossibly tall.</p>
+          <p>The fun was not only finishing a game. It was showing how a rough idea can move through design, visual experimentation, engineering, and play-testing—and that a child’s imagination can be a legitimate product brief.</p>
+        </div>
+      </section>
+
+      <section class="build-process section-shell" aria-labelledby="process-title">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow">From paper to playable</p><h2 id="process-title">Four loops, one small game.</h2></div>
+          <p>Each step gave us something concrete to react to, change, and improve together.</p>
+        </div>
+        <ol class="process-grid">
+          <li class="reveal"><span>01</span><h3>Imagine</h3><p>Characters, powers, controls, story beats, and the map started as conversations and paper sketches.</p></li>
+          <li class="reveal"><span>02</span><h3>Visualize</h3><p>We used generative AI to explore the look of Siren Head, House Head, and the stylized soldiers.</p></li>
+          <li class="reveal"><span>03</span><h3>Build</h3><p>AI-assisted coding helped translate the design into JavaScript, Three.js, procedural 3D models, combat, and enemy behaviour.</p></li>
+          <li class="reveal"><span>04</span><h3>Play-test</h3><p>We tuned movement, scale, attacks, lighting, weather, and difficulty by playing the prototype and iterating.</p></li>
+        </ol>
+      </section>
+
+      <section id="play" class="play-section">
+        <div class="section-shell">
+          <div class="section-heading split-heading reveal">
+            <div><p class="eyebrow">Playable prototype</p><h2>Enter Toronto Night.</h2></div>
+            <p>Desktop keyboard and mouse recommended. The game loads only when you ask, so the portfolio stays fast.</p>
+          </div>
+
+          <div class="game-stage reveal" data-game-stage>
+            <div class="game-poster" data-game-poster>
+              <img src="assets/siren-head-gameplay.jpg" alt="Siren Head in the playable Toronto night environment" />
+              <div class="game-poster-shade"></div>
+              <div class="game-launch-copy">
+                <span class="game-kicker">3D action / horror prototype</span>
+                <h3>Siren Head:<br />Toronto Night</h3>
+                <p>Fight through army patrols, reach the CN Tower, and face House Head.</p>
+                <button class="game-launch" type="button" data-launch-game><span aria-hidden="true">▶</span> Load game</button>
+              </div>
+            </div>
+            <iframe title="Siren Head: Toronto Night browser game" data-game-frame data-src="../../games/siren-head/" allow="autoplay; fullscreen; gamepad" allowfullscreen loading="lazy"></iframe>
+          </div>
+
+          <div class="play-actions reveal">
+            <p><strong>Having trouble in the embedded player?</strong> Open the game in its own tab for the best mouse-lock and fullscreen experience.</p>
+            <div><a class="button button-primary" href="../../games/siren-head/" target="_blank" rel="noreferrer">Open full-screen game <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="../../downloads/siren-head-toronto-night.zip" download>Download for PC</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="controls" class="controls-section section-shell">
+        <div class="controls-heading reveal"><p class="eyebrow">Controls</p><h2>Simple enough to start. Loud enough to matter.</h2></div>
+        <div class="controls-grid">
+          <div class="control-card reveal"><div class="key-group"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div><h3>Move</h3><p>Use the keyboard to navigate the city. Hold Shift to run.</p></div>
+          <div class="control-card reveal"><div class="mouse-icon" aria-hidden="true"><i></i></div><h3>Look + strike</h3><p>Move the mouse to look. Left-click for a sweeping hand attack.</p></div>
+          <div class="control-card reveal"><div class="key-group"><kbd>RMB</kbd></div><h3>Bite</h3><p>A slower, heavier close-range attack for bigger damage.</p></div>
+          <div class="control-card control-accent reveal"><div class="key-group"><kbd>E</kbd><kbd>F</kbd></div><h3>Siren blast</h3><p>An area attack that stuns and damages everything around you.</p></div>
+        </div>
+      </section>
+
+      <section class="concept-section section-shell" aria-labelledby="concept-title">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow">Character concepts</p><h2 id="concept-title">Ideas before polygons.</h2></div>
+          <p>AI-generated visual explorations helped us agree on silhouette, scale, mood, and the details that mattered before coding the 3D characters.</p>
+        </div>
+        <div class="concept-grid">
+          <figure class="concept-card reveal"><img src="assets/siren-head-concept.jpg" alt="AI-assisted concept art for the tall Siren Head character" loading="lazy" /><figcaption><span>Player</span><strong>Siren Head</strong><p>Tall, skeletal, weathered—and built around a sonic area attack.</p></figcaption></figure>
+          <figure class="concept-card reveal"><img src="assets/house-head-concept.jpg" alt="AI-assisted concept art for House Head, a house-shaped spider monster" loading="lazy" /><figcaption><span>Boss</span><strong>House Head</strong><p>A glowing, house-shaped creature carried by slow spider-like legs.</p></figcaption></figure>
+          <figure class="concept-card reveal"><img src="assets/soldier-concept.jpg" alt="AI-assisted concept art for a stylized masked army soldier" loading="lazy" /><figcaption><span>Enemy</span><strong>Army patrol</strong><p>Small against the monsters, but dangerous when they coordinate in groups.</p></figcaption></figure>
+        </div>
+      </section>
+
+      <section id="gallery" class="gallery-section section-shell">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow">Inside the prototype</p><h2>Rain, scale, and one very tall landmark.</h2></div>
+          <p>The compact level moves from patrols and checkpoints to the final House Head encounter near the CN Tower.</p>
+        </div>
+        <div class="game-gallery">
+          <figure class="gallery-wide reveal"><img src="assets/patrol.jpg" alt="Army patrol fighting Siren Head on a wet city street" loading="lazy" /><figcaption>Army patrol · early encounter</figcaption></figure>
+          <figure class="reveal"><img src="assets/boss.jpg" alt="House Head boss encounter in the game" loading="lazy" /><figcaption>House Head · boss encounter</figcaption></figure>
+          <figure class="reveal"><img src="assets/siren-head-gameplay.jpg" alt="Third-person view of the Siren Head player character" loading="lazy" /><figcaption>Siren Head · player scale</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="learning-section section-shell">
+        <div class="learning-quote reveal"><p>“Can we make the monster game I’m imagining?”</p><span>The whole project began with that question.</span></div>
+        <div class="learning-copy reveal">
+          <p class="eyebrow">What this project taught me</p>
+          <h2>AI shortened the distance between imagination and a first working version.</h2>
+          <p>It did not replace design or judgment. We still had to decide what was fun, communicate the feel we wanted, break the problem into pieces, test what came back, and keep improving it. That made the build a small lesson in product thinking—and a memorable way to make something together.</p>
+          <ul><li>Translate a playful idea into a scoped prototype</li><li>Use AI for exploration, not as a substitute for taste</li><li>Design for scale, feedback, and a clear five-minute loop</li><li>Ship something real enough for another person to play</li></ul>
+        </div>
+      </section>
+
+      <aside class="fan-note section-shell" aria-label="Fan project notice">
+        <strong>Unofficial fan project.</strong>
+        <p>Siren Head was created by artist Trevor Henderson. This free, non-commercial family prototype is an independent learning project and is not affiliated with, sponsored by, or endorsed by the character’s creator. House Head and the game-specific interpretation were developed for this experiment.</p>
+        <a href="https://trevorhenderson.format.com/about" target="_blank" rel="noreferrer">Creator attribution <span aria-hidden="true">↗</span></a>
+      </aside>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>© <span data-year></span> Muaaz Bin Sarfaraz</p>
+      <p>Made from a small idea and a lot of rain.</p>
+      <a href="../../#side-projects">Back to projects ↑</a>
+    </footer>
+  </body>
+</html>

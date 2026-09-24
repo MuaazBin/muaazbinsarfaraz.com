@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Siren Head: Toronto Night</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #05060a;
+    font-family: "Segoe UI", system-ui, sans-serif; color: #e6e6ea; }
+  #game { position: fixed; inset: 0; }
+  canvas { display: block; }
+
+  /* ---------- HUD ---------- */
+  #hud { position: fixed; inset: 0; pointer-events: none; z-index: 10; text-shadow: 0 2px 6px rgba(0,0,0,.9); user-select: none; }
+  .barWrap { position: absolute; left: 24px; bottom: 24px; width: 320px; }
+  .barLabel { font-size: 12px; letter-spacing: 2px; color: #cfd2d8; margin-bottom: 5px; text-transform: uppercase; font-weight: 600; }
+  .bar { height: 16px; border: 1px solid rgba(255,255,255,.35); border-radius: 3px; background: rgba(0,0,0,.55); overflow: hidden; box-shadow: 0 0 12px rgba(0,0,0,.6); }
+  .barFill { height: 100%; width: 100%; transition: width .12s linear; }
+  #hpFill { background: linear-gradient(90deg,#b21f1f,#f05a3a); box-shadow: 0 0 10px rgba(240,90,58,.5); }
+  #sirenWrap { position: absolute; left: 24px; bottom: 84px; width: 320px; }
+  #sirenFill { background: linear-gradient(90deg,#2a6df0,#57d0ff); box-shadow: 0 0 10px rgba(87,208,255,.5); }
+  #sirenReady { color: #6ff; }
+  #bossWrap { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: min(620px, 82vw); display: none; text-align: center; }
+  #bossName { font-size: 15px; letter-spacing: 4px; color: #ffd27a; margin-bottom: 6px; font-weight: 700; text-transform: uppercase; }
+  #bossBar { height: 20px; border: 1px solid rgba(255,180,120,.55); border-radius: 3px; background: rgba(0,0,0,.6); overflow: hidden; }
+  #bossFill { height:100%; width:100%; background: linear-gradient(90deg,#7a1f1f,#e0a020,#ffd060); transition: width .15s linear; }
+  #objective { position: absolute; top: 22px; left: 24px; max-width: 40vw; font-size: 15px; color: #e9eaf0; }
+  #objTag { font-size: 11px; letter-spacing: 3px; color: #7fd0ff; text-transform: uppercase; }
+  #objText { font-size: 17px; margin-top: 3px; font-weight: 600; }
+  #controls { position: absolute; right: 20px; bottom: 20px; font-size: 12px; line-height: 1.7; color: #b9bcc6; text-align: right; }
+  #controls b { color: #e9eaf0; }
+  #qualityTag { position: absolute; right: 20px; top: 20px; font-size: 11px; letter-spacing: 2px; color: #8b8e98; text-transform: uppercase; }
+  #crosshair { position: absolute; top:50%; left:50%; width:6px; height:6px; margin:-3px 0 0 -3px; border-radius:50%; background:rgba(255,255,255,.55); box-shadow:0 0 6px rgba(0,0,0,.8); }
+  #toast { position: absolute; top: 42%; left: 50%; transform: translateX(-50%); font-size: 30px; font-weight: 800; letter-spacing: 3px; color:#fff; opacity: 0; transition: opacity .4s; text-align:center; text-transform:uppercase; }
+  #flash { position: fixed; inset:0; background:#fff; opacity:0; pointer-events:none; z-index:9; }
+  #hurt  { position: fixed; inset:0; pointer-events:none; z-index:8; opacity:0; box-shadow: inset 0 0 200px 40px rgba(150,0,0,.9); transition: opacity .25s; }
+  .letterbox { position: fixed; left:0; right:0; height:0; background:#000; z-index:7; transition: height .8s ease; pointer-events:none; }
+  #lbTop { top:0; } #lbBot { bottom:0; }
+  body.cinematic .letterbox { height: 9vh; }
+
+  /* ---------- Screens ---------- */
+  .screen { position: fixed; inset:0; z-index: 20; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    background: radial-gradient(ellipse at center, rgba(20,14,14,.62), rgba(3,4,8,.94)); backdrop-filter: blur(2px); }
+  .hidden { display:none !important; }
+  #title { font-size: clamp(34px, 6vw, 66px); font-weight: 900; letter-spacing: 4px; color:#f2e3c8; text-shadow: 0 0 30px rgba(240,90,58,.35), 0 4px 12px #000; }
+  #subtitle { color:#c98b6a; letter-spacing: 8px; margin-top: 4px; font-size: 14px; text-transform:uppercase;}
+  .card { margin-top: 22px; max-width: 640px; background: rgba(0,0,0,.42); border:1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 20px 26px; line-height: 1.7; font-size: 14px; color:#d7d9e0; }
+  .card b { color:#ffd27a; }
+  .keys { display:grid; grid-template-columns: repeat(2,1fr); gap:6px 24px; margin-top: 12px; text-align:left; font-size:13.5px; }
+  kbd { background:#1c2030; border:1px solid #3a4055; border-bottom-width:2px; border-radius:5px; padding:1px 7px; font-family: inherit; color:#fff; font-size:12px; }
+  .quality { margin-top: 18px; display:flex; gap:8px; align-items:center; justify-content:center; pointer-events:auto; font-size:12px; letter-spacing:2px; color:#9a9eaa; text-transform:uppercase; }
+  .quality button { margin:0; padding: 8px 16px; font-size: 12px; letter-spacing: 2px; background:#1c2030; color:#cfd2d8; border:1px solid #3a4055; box-shadow:none; border-radius:7px; }
+  .quality button.active { background: linear-gradient(180deg,#ffd27a,#f0a85a); color:#0a0a0a; border-color:transparent; }
+  button { margin-top: 24px; pointer-events:auto; cursor:pointer; font: 700 18px/1 "Segoe UI", sans-serif; letter-spacing: 3px; color:#0a0a0a;
+    background: linear-gradient(180deg,#ffd27a,#f0a85a); border:none; border-radius: 10px; padding: 15px 42px; text-transform: uppercase; box-shadow: 0 8px 24px rgba(240,120,40,.35); }
+  button:hover { filter: brightness(1.08); } button:active { transform: translateY(1px); }
+  #loadNote { margin-top:12px; font-size:12px; color:#8b8e98; letter-spacing:1px; }
+  #fanCredit { max-width: 680px; margin-top: 12px; padding: 0 18px; color:#686b75; font-size:10px; line-height:1.45; }
+  #endTitle { font-size: clamp(30px,5vw,54px); font-weight:900; letter-spacing:4px; }
+  .win  { color:#8fe38f; text-shadow:0 0 30px rgba(80,220,120,.4); }
+  .lose { color:#f05a5a; text-shadow:0 0 30px rgba(220,60,60,.4); }
+  #err { position:fixed; inset:0; z-index:99; display:none; align-items:center; justify-content:center; padding:40px; text-align:center; background:#0a0a12; color:#ffb4b4; font-size:15px; line-height:1.7; }
+</style>
+</head>
+<body>
+<div id="game"></div>
+
+<div id="hud">
+  <div id="objective"><div id="objTag">Objective</div><div id="objText">Reach the CN Tower</div></div>
+  <div id="qualityTag"></div>
+  <div id="bossWrap"><div id="bossName">House Head</div><div id="bossBar"><div id="bossFill"></div></div></div>
+  <div id="sirenWrap"><div class="barLabel">Siren Blast &nbsp;<span id="sirenReady">READY</span></div><div class="bar"><div id="sirenFill" class="barFill"></div></div></div>
+  <div class="barWrap"><div class="barLabel">Siren Head</div><div class="bar"><div id="hpFill" class="barFill"></div></div></div>
+  <div id="controls">
+    <b>WASD</b> / <b>Arrows</b> move &nbsp; <b>← →</b> turn &nbsp; <b>Shift</b> run &nbsp; <b>Space</b> step<br>
+    <b>L-Click</b> hand strike &nbsp; <b>R-Click</b> bite<br>
+    <b>E</b> / <b>F</b> siren blast &nbsp; <b>Mouse</b> look
+  </div>
+  <div id="crosshair"></div>
+  <div id="lookHint" style="display:none;position:absolute;left:50%;top:64px;transform:translateX(-50%);font-size:12px;letter-spacing:1px;color:#9fb4c8;text-align:center;max-width:70vw;">
+    Mouse-look: move the mouse to look &nbsp;·&nbsp; park it at the far left/right edge to keep turning &nbsp;·&nbsp; or use <b>← →</b></div>
+  <div id="toast"></div>
+</div>
+<div id="flash"></div>
+<div id="hurt"></div>
+<div class="letterbox" id="lbTop"></div><div class="letterbox" id="lbBot"></div>
+
+<div id="start" class="screen">
+  <div id="title">SIREN HEAD</div>
+  <div id="subtitle">Toronto Night</div>
+  <div class="card">
+    You are <b>Siren Head</b> — five storeys of weathered flesh and screaming steel, loose in a storm-lit downtown Toronto.
+    The army is swarming the streets to stop you. Smash through them, push toward the <b>CN Tower</b>, and face the thing waiting in the plaza: <b>House Head</b>.
+    <div class="keys">
+      <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>↓</kbd> &nbsp;Move</div>
+      <div><kbd>←</kbd><kbd>→</kbd> &nbsp;Turn &nbsp;·&nbsp; <kbd>Shift</kbd> Run</div>
+      <div><kbd>Space</kbd> &nbsp;Step / jump</div>
+      <div>Move <kbd>Mouse</kbd> &nbsp;Look around</div>
+      <div><kbd>L-Click</kbd> &nbsp;Hand strike (sweep)</div>
+      <div><kbd>R-Click</kbd> &nbsp;Bite (heavy)</div>
+      <div><kbd>E</kbd> or <kbd>F</kbd> &nbsp;Siren blast (AoE)</div>
+      <div><kbd>Esc</kbd> &nbsp;Pause</div>
+    </div>
+    <div class="quality">Graphics
+      <button data-q="low">Low</button><button data-q="medium">Medium</button><button data-q="high">High</button>
+    </div>
+  </div>
+  <button id="startBtn">Enter the Storm</button>
+  <div id="loadNote">Click to lock the mouse. Best played fullscreen (F11) with sound on.</div>
+  <div id="fanCredit">Unofficial, free fan prototype. Siren Head was created by artist Trevor Henderson. This independent family learning project is not affiliated with or endorsed by the creator.</div>
+</div>
+
+<div id="pause" class="screen hidden"><div id="title" style="font-size:44px">Paused</div><button id="resumeBtn">Resume</button></div>
+<div id="end" class="screen hidden">
+  <div id="endTitle" class="win">PROTOTYPE COMPLETE</div>
+  <div class="card" id="endMsg">House Head lies broken beneath the tower.</div>
+  <button id="restartBtn">Play Again</button>
+</div>
+<div id="err"></div>
+
+<!-- Three.js r128 (global build) + post-processing / reflection add-ons. Order matters. -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"
+        onerror="document.getElementById('err').style.display='flex';document.getElementById('err').innerHTML='Couldn&#39;t load the 3D engine (Three.js) from the internet.<br>Connect to the internet and reload.';"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/FXAAShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/objects/Reflector.js"></script>
+
+<!-- game -->
+<script>if(!window.THREE){document.getElementById('err').style.display='flex';}</script>
+<script src="js/core.js"></script>
+<script src="js/world.js"></script>
+<script src="js/models.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
