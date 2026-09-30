@@ -23,7 +23,7 @@ GitHub is the source of truth. Cloudflare is connected to the repository and aut
 
 1. Preserve unrelated user changes. Inspect `git status` before editing.
 2. Never commit API keys, OAuth secrets, Turnstile secrets, `.dev.vars`, tokens, passwords, or user-uploaded documents.
-3. The current employer's public name must remain **Company**. Do not restore "Canadian Cancer Society" anywhere in public files, metadata, images, downloads, or generated content.
+3. The current employer's public name must remain **Company**. Do not disclose or restore the private employer name anywhere in public files, metadata, images, downloads, or generated content.
 4. New side projects should be separate pages under `projects/<slug>/`; do not insert a large project case study into the scrolling homepage unless the user explicitly requests it.
 5. Keep the homepage's established dark visual system. A deliberately contrasting section must be reviewed visually before deployment.
 6. Use a preview branch first for meaningful visual or functional changes. Deploy to `main` only after the user approves the preview.
