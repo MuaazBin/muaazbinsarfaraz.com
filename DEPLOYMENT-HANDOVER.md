@@ -37,7 +37,7 @@ GitHub is the source of truth. Cloudflare is connected to the repository and aut
 | `index.html` | Portfolio homepage and primary navigation |
 | `styles.css` | Shared homepage/theme/layout styles |
 | `script.js` | Shared navigation, reveal effects, counters, and interactions |
-| `assets/` | Shared images, favicon, CV, and built browser assets |
+| `assets/` | Shared images, favicon, and built browser assets |
 | `projects/<slug>/` | Standalone project write-ups and project-specific assets |
 | `games/<slug>/` | Browser-playable games |
 | `downloads/` | Files intentionally offered for public download |

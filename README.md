@@ -57,8 +57,7 @@ Never guess DNS values: use the exact values shown by the hosting provider at se
 - Replace or confirm every claim and metric.
 - Confirm that the portfolio-lab examples can be shared publicly.
 - Add a professional portrait only if it supports the brand; the current design does not depend on one.
-- Decide whether to expose a phone number. This version intentionally publishes email and LinkedIn only.
-- Update the CV in `assets/Muaaz-Bin-Sarfaraz-CV.pdf` whenever the résumé changes.
+- This version intentionally publishes email only. It does not expose a phone number or downloadable CV.
 - Add analytics only after choosing a privacy approach. Cloudflare Web Analytics or Plausible are lightweight options.
 
 ## Editing the content
@@ -66,7 +65,7 @@ Never guess DNS values: use the exact values shown by the hosting provider at se
 - Main page content: `index.html`
 - Colors, typography, layout, and responsive behavior: `styles.css`
 - Navigation, reveal animations, metric counters: `script.js`
-- Downloadable résumé and favicon: `assets/`
+- Shared images, generated browser assets, and favicon: `assets/`
 
 The site uses system fonts and local assets, so it remains fast and functional without third-party requests.
 
