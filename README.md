@@ -2,6 +2,8 @@
 
 A responsive, accessible personal portfolio for Muaaz Bin Sarfaraz. The site is intentionally built as plain HTML, CSS, and JavaScript: no build system, no paid theme, and no framework lock-in.
 
+> **Production hosting:** The live site is deployed from GitHub to Cloudflare Pages. Start with [DEPLOYMENT-HANDOVER.md](DEPLOYMENT-HANDOVER.md) for the current repository structure, preview workflow, production deployment, Cloudflare Functions, cache handling, security rules, and rollback procedure. The older Netlify notes below are historical and must not be used for current production.
+
 ## Preview it locally
 
 Open `index.html` directly, or run a small local server from this folder:
@@ -12,7 +14,7 @@ python -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
-## Publish it — recommended path
+## Historical initial-hosting notes — do not use for current production
 
 ### 1. Buy the domain
 
